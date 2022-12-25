@@ -33,9 +33,14 @@ func (b Board) Unpack() UnpackedBoard {
 func (ub UnpackedBoard) Pack() Board {
 	b := Board{Header: ub.Header, Properties: ub.Properties}
 
+	//place player at 0 status element
+	pse := ub.Tiles[Index(ub.Properties.PlayerEnterX, ub.Properties.PlayerEnterY)].StatusElement
+	pse.Properties.LocationX, pse.Properties.LocationY = ub.Properties.PlayerEnterX, ub.Properties.PlayerEnterY
+	b.StatusElements = []StatusElement{ *pse }
+	
 	tile := Tile{ Element: ub.Tiles[0].Element, Color: ub.Tiles[0].Color }
 	for i, t := range ub.Tiles {
-		if t.StatusElement != nil {
+		if t.StatusElement != nil && t.Element != Player {
 			se := *t.StatusElement
 			se.Properties.LocationX, se.Properties.LocationY = XY(i)
 			b.StatusElements = append(b.StatusElements, se)
