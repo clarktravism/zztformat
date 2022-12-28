@@ -35,8 +35,8 @@ func (s String50) String() string {
 	return string(s.Value[:s.Length])
 }
 
-func NewString50(s string) String20 {
-	var v String20
+func NewString50(s string) String50 {
+	var v String50
 	v.Length = byte(copy(v.Value[:], s))
 	return v
 }
@@ -50,8 +50,8 @@ func (s String58) String() string {
 	return string(s.Value[:s.Length])
 }
 
-func NewString58(s string) String20 {
-	var v String20
+func NewString58(s string) String58 {
+	var v String58
 	v.Length = byte(copy(v.Value[:], s))
 	return v
 }
