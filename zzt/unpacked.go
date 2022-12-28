@@ -84,3 +84,48 @@ func XY(i int) (x, y byte) {
 	}
 	return byte(i % 60 + 1), byte(i / 60 + 1)
 }
+
+//UnpackedTile Functions
+//
+
+func NewPlayer() UnpackedTile {
+	return UnpackedTile{
+		Element: Player,
+		Color: Color(White, Blue),
+		StatusElement: &StatusElement{
+			Properties: StatusElementProperties{
+				Cycle: 1,
+			},
+		},
+	}
+}
+
+func NewObject(char byte, color byte, code []byte) UnpackedTile {
+	return UnpackedTile{
+		Element: Object,
+		Color: color,
+		StatusElement: &StatusElement{
+			Properties: StatusElementProperties{
+				Cycle: 3,
+				P1: char,
+				Follower: -1,
+				Leader: -1,
+			},
+			Code: code,
+		},
+	}
+}
+
+func NewPassage(color byte, board byte) UnpackedTile {
+	return UnpackedTile{
+		Element: Passage,
+		Color: color,
+		StatusElement: &StatusElement{
+			Properties: StatusElementProperties{
+				P3: board,
+				Follower: -1,
+				Leader: -1,
+			},
+		},
+	}
+}
