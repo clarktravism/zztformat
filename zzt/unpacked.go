@@ -33,11 +33,6 @@ func (b Board) Unpack() UnpackedBoard {
 
 func (ub UnpackedBoard) Pack() Board {
 	b := Board{Header: ub.Header, Properties: ub.Properties, StatusElements: make([]StatusElement, 1)}
-
-	//place player at 0 status element
-	//pse := ub.Tiles[Index(ub.Properties.PlayerEnterX, ub.Properties.PlayerEnterY)].StatusElement
-	//pse.Properties.LocationX, pse.Properties.LocationY = ub.Properties.PlayerEnterX, ub.Properties.PlayerEnterY
-	//b.StatusElements = []StatusElement{ *pse }
 	
 	tile := Tile{ Element: ub.Tiles[0].Element, Color: ub.Tiles[0].Color }
 	for i, t := range ub.Tiles {
